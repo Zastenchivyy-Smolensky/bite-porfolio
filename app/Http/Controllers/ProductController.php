@@ -14,6 +14,7 @@ class ProductController extends Controller
     {
         return view("add");
     }
+
     public function create(Request $request){
         $data = $request->all();
         $image = $request->file("image");
@@ -38,16 +39,22 @@ class ProductController extends Controller
         $product = Product::find($id);
         return view("show",["products"=>$product]);
     }
-    public function edit($id, $product){
+
+    public function edit($id){
         $product = Product::find($id);
-        return view('products/edit',[
-            "prodcut" => $product
-        ]);
+        return view('edit',compact("product"));
+    }
+
+    public function update(Request $request,  $id)
+    {
+        $product = Product::find($id);
+        $updateProduct=$this->product->updateProduct($request, $product);
+        return redirect()->route("product.index");
     }
     public function delete($id)
     {
         $product = Product::find($id);
         $product->delete();
-        return redirect("/products");
+        return redirect()->route("product.index");
     }
 }

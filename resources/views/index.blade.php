@@ -12,11 +12,15 @@
     <ul>
         @foreach($products as $product)
             <p>{{$product->id}}</p>
-           <td>{{$product->title}}</td>
-            <a href="products/edit">編集</a>
+            <td><a href="{{ route('product.show', ['id'=>$product->id]) }}" class="btn btn-primary">{{$product->title}}</a></td>
+            <td><a href="{{ route('product.edit', ['id'=>$product->id]) }}" class="btn btn-info">編集</a></td>
                 <img src="{{ '/storage/' . $product['image']}}" class='w-100 mb-3'/>
-            <td>{{$product->create_at}}</td>
-
+            <td>
+                <form action="{{route('product.delete',['id'=>$product->id])}}" method="post">
+                    @csrf
+                    <button type="submit">削除</button>
+                </form>
+            </td>
         @endforeach
     </ul>
 </body>
