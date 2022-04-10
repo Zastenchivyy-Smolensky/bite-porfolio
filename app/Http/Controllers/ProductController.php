@@ -42,14 +42,29 @@ class ProductController extends Controller
 
     public function edit($id){
         $product = Product::find($id);
-        return view('edit',compact("product"));
+        return view('edit',["product"=>$product]);
     }
 
-    public function update(Request $request,  $id)
+    public function update(Request $request, $id)
     {
-        $product = Product::find($id);
-        $updateProduct=$this->product->updateProduct($request, $product);
-        return redirect()->route("product.index");
+        $data = $request->all();
+        $image = $request->file("image");
+        $path=$request->image;
+        if($request->hasFile("image")){
+            $path=\Storage::put("/public",$image);
+            $path=$image->store("product","public");
+        }else{
+            $path=null;
+        }
+        Product::where("id",$id)->update([
+            "title" => $data["title"],
+            "content"=>$data["content"],
+            "image" => $path,
+            "span" => $data["span"],
+            "genre" => $data["genre"],
+        ]);
+            
+        return redirect()->route("product.edit", $product->id);
     }
     public function delete($id)
     {
