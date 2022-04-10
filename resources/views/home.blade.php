@@ -5,7 +5,18 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                @if(Session::has("message"))
+                    <p>{{session("message")}}</p>
+                @endif
+                <p class="card-header">名前:{{$user->name}}</p>
+                
+                <form action="/user_image" method="post" enctype="muitipart/form-data">
+                    {{ csrf_field() }}
+                    <div>
+                        <input type="file" name="top_image">
+                    </div>
+                    <button>変更</button>
+                </form>
 
                 <div class="card-body">
                     @if (session('status'))

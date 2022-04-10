@@ -20,7 +20,13 @@ return new class extends Migration
             $table->integer("span");
             $table->string("image");
             $table->string("genre");
+            $table->string("tech");
             $table->timestamps();
+
+            $table->foreign("user_id")
+                  ->references("id")
+                  ->on("users")
+                  ->onDelete("cascade");
         });
     }
 

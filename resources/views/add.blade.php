@@ -17,6 +17,7 @@
     <section class="section">
         <div class="container">
             <div class="column id-6">
+            <form action="/create" method="post" enctype="multipart/form-data">
                 <table>
                     @csrf
                     <div class="field">
@@ -42,12 +43,12 @@
                         <input type="text" name="genre" class="input">
                     </div>
                 </table>
+                <button class="button is-success">投稿</button>
+            </form>
             </div>
         </div>
     </section>
-    <form action="/create" method="post" enctype="multipart/form-data">
     
-    <button class="button is-success">投稿</button>
 </form>
 </body>
 </html>
