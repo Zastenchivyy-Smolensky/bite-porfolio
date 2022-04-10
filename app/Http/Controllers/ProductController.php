@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 class ProductController extends Controller
 {
     public function index(){
@@ -32,7 +34,7 @@ class ProductController extends Controller
             "genre" => $data["genre"]
             
         ]);
-        return redirect("/products");
+        return redirect("/");
     }
 
     public function show($id){
