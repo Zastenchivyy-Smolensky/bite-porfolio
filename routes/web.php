@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UsersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,5 +26,6 @@ Route::post('/update/{id}',"App\Http\Controllers\ProductController@update")->nam
 Route::post("/create","App\Http\Controllers\ProductController@create")->name("product.create")->middleware("auth");
 Route::post("/products/{id}","App\Http\Controllers\ProductController@delete")->name("product.delete")->middleware("auth");
 Route::post("/like","App\Http\Controllers\ProductController@like")->name("product.like");
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home_image', [App\Http\Controllers\HomeController::class, 'my_page_update'])->name('home');
+Route::get('/home', 'App\Http\Controllers\HomeController@index')->name("home");
+Route::post('/home', 'App\Http\Controllers\HomeController@my_page_update');
+Route::resource("/users", "App\Http\Controllers\UsersController",["only"=>["show"]]);

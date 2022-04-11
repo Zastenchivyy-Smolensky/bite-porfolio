@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 class ProductController extends Controller
 {
     public function index(){
-        $products = Product::withCount('likes')->orderBy('id', 'desc')->paginate(10);
-        $user = Auth::user();
+        $products = Product::all();
+        $products ->load("user");
         $params=[
             "products"=>$products,
-            "user"=>$user
         ];
         return view("index",$params);
     }
@@ -36,9 +36,14 @@ class ProductController extends Controller
             "content"=> $data["content"],
             "image" => $path[1],
             "span" => $data["span"],
-            "genre" => $data["genre"]
-            
+            "genre" => $data["genre"],
+            "tech" => $data["tech"],
+            "github" => $data["github"],
+            "link" => $data["link"],
         ]);
+
+        $product->user_id = $request->user_id;
+
         return redirect("/");
     }
 
@@ -69,6 +74,7 @@ class ProductController extends Controller
             "image" => $path,
             "span" => $data["span"],
             "genre" => $data["genre"],
+            "tech" => $data["tech"]
         ]);
             
         return redirect()->route("product.edit", $product->id);

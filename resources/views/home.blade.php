@@ -9,8 +9,15 @@
                     <p>{{session("message")}}</p>
                 @endif
                 <p class="card-header">名前:{{$user->name}}</p>
-                
-                <form action="/user_image" method="post" enctype="muitipart/form-data">
+                @if(Session::has('top_image_pass'))
+                    <img src="{{asset('storage/top_file')}}/{{session('top_image_pass')}}" alt="">
+                @elseif($user->image_photo_path="/def_img/noimage.png")
+                <p><img src="{{$user->image_photo_path}}" alt=""></p>
+                @else
+                    <p><img src="{{ asset('/storage/top_file') }}/{{ $my_user->image_photo_path }}" alt=""> </p>
+                @endif
+
+                <form action="/home" method="post" enctype="muitipart/form-data">
                     {{ csrf_field() }}
                     <div>
                         <input type="file" name="top_image">

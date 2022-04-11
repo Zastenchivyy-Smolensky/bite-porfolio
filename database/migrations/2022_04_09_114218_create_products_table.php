@@ -21,12 +21,11 @@ return new class extends Migration
             $table->string("image");
             $table->string("genre");
             $table->string("tech");
+            $table->string("github");
+            $table->string("link");
             $table->timestamps();
 
-            $table->foreign("user_id")
-                  ->references("id")
-                  ->on("users")
-                  ->onDelete("cascade");
+
         });
     }
 

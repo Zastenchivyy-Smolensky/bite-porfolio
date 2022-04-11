@@ -42,6 +42,20 @@
                         <label class="label">ジャンル</label><br>
                         <input type="text" name="genre" class="input">
                     </div>
+                    <div class="field">
+                        <label class="label">技術</label><br>
+                        <input type="text" name="tech" class="input">
+                    </div>
+
+                    <div class="field">
+                        <label class="label">githubのリンク</label><br>
+                        <input type="text" name="github" class="input">
+                    </div>
+
+                    <div class="field">
+                        <label class="label">リンク</label><br>
+                        <input type="text" name="link" class="input">
+                    </div>
                 </table>
                 <button class="button is-success">投稿</button>
             </form>
