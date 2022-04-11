@@ -36,8 +36,10 @@
 
                     <div class="field">
                         <label class="label">アプリの画像</label><br>
-                        <input type="file" name="image" class="input">
+                        <input type="file" name="thefile" class="input">
                     </div>
+
+
                     <div class="field">
                         <label class="label">ジャンル</label><br>
                         <input type="text" name="genre" class="input">

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\User;
+use App\Models\Product;
 class UsersController extends Controller
 {
 
@@ -16,7 +17,7 @@ class UsersController extends Controller
     public function show(User $user)
     {
         $user = User::find($user->id);
-        $product = Product::where("user_id",$user->id)
+        $products = Product::where("user_id",$user->id)
             ->orderBy("created_at","desc")
             ->paginate(10);
             return view("users.show",[

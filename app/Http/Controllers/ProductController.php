@@ -31,19 +31,18 @@ class ProductController extends Controller
         }else{
             $path=null;
         }
-        $product_id = Product::insertGetId([
-            "title" => $data["title"],
-            "content"=> $data["content"],
-            "image" => $path[1],
-            "span" => $data["span"],
-            "genre" => $data["genre"],
-            "tech" => $data["tech"],
-            "github" => $data["github"],
-            "link" => $data["link"],
-        ]);
-
-        $product->user_id = $request->user_id;
-
+        $products = new Product;
+        $products->title = $request->title;
+        $products->content = $request->content;
+        $products->span = $request->span;
+        $products->genre = $request->genre;
+        $products->tech = $request->tech;
+        $filename= $request->file("thefile")->store("public");
+        $products->image = str_replace("public/",'', $filename);
+        $products->github = $request->github;
+        $products->link = $request->link;
+        $products->user_id = Auth::id();
+        $products->save();
         return redirect("/");
     }
 
