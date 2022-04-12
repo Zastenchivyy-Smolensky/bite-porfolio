@@ -20,14 +20,29 @@
             </div>
         </div>
     </section>
-
-    <div class="card mb-3">
-    <img src="{{ '/storage/' . $products['image']}}" class='img-thumbnail' width="100%" height="180"/>
-        <div class="card-body">
-            <h5 class="card-title">{{$products["title"]}}</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    
+    <div class="text-center">
+        <img src="{{ '/storage/' . $products['image']}}" class='img-thumbnail' width="500" height="180"/>
     </div>
+        <div class="card-body">
+            <div class="text-center">
+                <h5 class="card-title">
+                    <div class="media">
+                        アプリのタイトル<br>
+                        {{$products["title"]}}
+                    </div>
+                </h5>
+                <p class="card-text">
+                    アプリの説明<br>
+                    {{$products["content"]}}
+                </p>
+                <p class="card-text">
+                    <small class="text-muted">
+                        投稿日{{ $products->created_at->format('Y.m.d') }}
+                    </small>
+                </p>
+            </div>
+        </div>
     @endsection
 
 </body>

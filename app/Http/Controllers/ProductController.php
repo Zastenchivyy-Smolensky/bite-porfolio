@@ -11,9 +11,11 @@ class ProductController extends Controller
 {
     public function index(){
         $products = Product::all();
+        $user_id = Auth::id();
         $products ->load("user");
         $params=[
             "products"=>$products,
+            "user_id"=>$user_id
         ];
         return view("index",$params);
     }

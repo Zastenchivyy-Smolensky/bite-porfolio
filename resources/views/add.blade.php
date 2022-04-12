@@ -5,6 +5,7 @@
 </head>
 <body>
     @extends("layouts.app")
+    @section('content')
     <section class="hero is-success">
         <div class="hero-body">
             <div class="container">
@@ -64,8 +65,9 @@
             </div>
         </div>
     </section>
-    
 </form>
+@endsection
+
 </body>
 </html>
 
