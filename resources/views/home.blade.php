@@ -1,23 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container text-center">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8 ">
             <div class="card">
                 @if(Session::has("message"))
                     <p>{{session("message")}}</p>
                 @endif
                 <p class="card-header">名前:{{$user->name}}</p>
                 @if(Session::has('top_image_pass'))
-                    <img src="{{asset('storage/top_file')}}/{{session('top_image_pass')}}" alt="">
-                @elseif($user->image_photo_path="/def_img/noimage.png")
-                <p><img src="{{$user->image_photo_path}}" alt=""></p>
+                    <img src="{{asset('storage/profile_image')}}/{{session('top_image_pass')}}" alt="大">
+                @elseif($user->profile_image == "/def_img/noimage.png")
+                <p><img src="{{$user->profile_image}}" alt="中"></p>
                 @else
-                    <p><img src="{{ asset('/storage/top_file') }}/{{ $my_user->image_photo_path }}" alt=""> </p>
+                    <p><img src="{{asset('storage/'.$user->profile_image)}}" alt="{{ asset('/storage/profile_image') }}/{{ $user->profile_image }}"> </p>
                 @endif
 
-                <form action="/home" method="post" enctype="muitipart/form-data">
+                <form action="/home" method="post" enctype='multipart/form-data'>
                     {{ csrf_field() }}
                     <div>
                         <input type="file" name="top_image">

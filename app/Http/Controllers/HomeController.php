@@ -36,10 +36,9 @@ class HomeController extends Controller
             $top_image_pass2 = basename($photo_path);
             $affected = DB::table('users')
                 ->where('id', $id)
-                ->update(['profile_photo_path' => $top_image_pass2]);
+                ->update(['profile_image' => $top_image_pass2]);
             // 画像に表示させる
             return redirect("/home")->with([
-                "message" => "マイページ画像を変更しました。",
                 "top_image_pass" => $top_image_pass2 
             ]);
         }
