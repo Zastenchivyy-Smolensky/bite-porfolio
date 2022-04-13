@@ -10,11 +10,11 @@
                 @endif
                 <p class="card-header">名前:{{$user->name}}</p>
                 @if(Session::has('top_image_pass'))
-                    <img src="{{asset('storage/profile_image')}}/{{session('top_image_pass')}}" alt="大">
+                    <img src="{{asset('storage/top_file')}}/{{session('top_image_pass')}}" alt="大">
                 @elseif($user->profile_image == "/def_img/noimage.png")
-                <p><img src="{{$user->profile_image}}" alt="中"></p>
+                    <p><img src="{{$user->profile_image}}" alt="中"></p>
                 @else
-                    <p><img src="{{asset('storage/'.$user->profile_image)}}" alt="{{ asset('/storage/profile_image') }}/{{ $user->profile_image }}"> </p>
+                    <p><img src="{{ asset('/storage/top_file') }}/{{ $user->profile_image }}" alt=""> </p>
                 @endif
 
                 <form action="/home" method="post" enctype='multipart/form-data'>
@@ -38,5 +38,4 @@
         </div>
     </div>
 </div>
-
 @endsection

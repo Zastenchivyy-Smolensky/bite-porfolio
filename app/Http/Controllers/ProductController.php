@@ -12,10 +12,12 @@ class ProductController extends Controller
     public function index(){
         $products = Product::all();
         $user_id = Auth::id();
+        $user = User::all();
         $products ->load("user");
         $params=[
             "products"=>$products,
-            "user_id"=>$user_id
+            "user_id"=>$user_id,
+            "user" => $user,
         ];
         return view("index",$params);
     }
@@ -58,7 +60,7 @@ class ProductController extends Controller
         return view('edit',["product"=>$product]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
         $data = $request->all();
         $image = $request->file("image");
@@ -69,17 +71,18 @@ class ProductController extends Controller
         }else{
             $path=null;
         }
-        Product::where("id",$id)->update([
-            "title" => $data["title"],
-            "content"=>$data["content"],
+        $product->update([
+            "title" => $request->title,
+            "content" => $request->content,
             "image" => $path,
-            "span" => $data["span"],
-            "genre" => $data["genre"],
-            "tech" => $data["tech"]
+            "genre" => $request->genre,
+            "tech" => $request->tech,
+            "github" => $request->github,
+            "link" => $request->link
         ]);
-            
-        return redirect()->route("product.edit", $product->id);
+        return redirect("/");
     }
+
     public function delete($id)
     {
         $product = Product::find($id);

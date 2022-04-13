@@ -22,7 +22,7 @@ Route::get("/","App\Http\Controllers\ProductController@index")->name("product.in
 Route::get("/products/{id}", "App\Http\Controllers\ProductController@show")->name("product.show")->middleware("auth");
 Route::get("/add","App\Http\Controllers\ProductController@add")->name("product.add")->middleware("auth");
 Route::get("/edit/{id}","App\Http\Controllers\ProductController@edit")->name("product.edit")->middleware("auth");
-Route::post('/update/{id}',"App\Http\Controllers\ProductController@update")->name('update')->middleware("auth");
+Route::post('/update/{id}',"App\Http\Controllers\ProductController@update")->name('product.update')->middleware("auth");
 Route::post("/create","App\Http\Controllers\ProductController@create")->name("product.create")->middleware("auth");
 Route::post("/products/{id}","App\Http\Controllers\ProductController@delete")->name("product.delete")->middleware("auth");
 Route::post("/like","App\Http\Controllers\ProductController@like")->name("product.like");

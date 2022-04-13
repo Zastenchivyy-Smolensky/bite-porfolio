@@ -34,7 +34,7 @@
                                 <img src="{{ '/storage/' . $product['image']}}" class='img-thumbnail' width="100%" height="180"/>
                                     <div class="card-body">
                                         <div class="card-title">
-                                            投稿者: <a href="{{route('users.show', $product->user_id)}}">{{$user_id}}</a>
+                                            投稿者: <a href="{{route('users.show', $product->user_id)}}">{{$product->user->name}}</a>
                                         </div>
                                         <p class="card-text">{{$product->content}}</p>
                                         <div class="btn-group">
