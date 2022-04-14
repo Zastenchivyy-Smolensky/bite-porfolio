@@ -15,7 +15,7 @@
             <div class="card-body">
                 <p class="card-text">
                     タイトル:{{$product->title}} <br>
-                    投稿者: <a href="{{ route('users.show', $product->user_id) }}">{{ $user_name }}</a>
+                    投稿者: {{ $user_name }}
                 </p>
               <p class="card-text">{{ \Illuminate\Support\Str::limit($product->content, 140) }}</p>
               <a class="card-link" href="{{ route('product.show', ['id'=>$product->id]) }}">
@@ -24,7 +24,7 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary"> <a href="{{ route('product.show', ['id'=>$product->id]) }}" >View</a></button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ route('product.edit', ['id'=>$product->id]) }}" >Edit</a></button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ route('edit', ['id'=>$product->id]) }}" >Edit</a></button>
                 </div>
                 <small class="text-muted">
                     <span class="mr-2">

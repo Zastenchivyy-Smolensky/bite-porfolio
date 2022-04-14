@@ -36,11 +36,11 @@
                                         <div class="card-title">
                                             投稿者: <a href="{{route('users.show', $product->user_id)}}">{{$product->user->name}}</a>
                                         </div>
-                                        <p class="card-text">{{$product->content}}</p>
+                                        <p class="card-text">{{$product->title}}</p>
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-outline-secondary"> <a href="{{ route('product.show', ['id'=>$product->id]) }}" >View</a></button>
                                             @if($user_id == $product->user_id)
-                                            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ route('product.edit', ['id'=>$product->id]) }}" >Edit</a></button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ route('edit', ['id'=>$product->id]) }}" >Edit</a></button>
                                         </div>
                                         <form action="{{route('product.delete',['id'=>$product->id])}}" method="post">
                                             @csrf
@@ -61,11 +61,10 @@
                                     @endauth
                                     <p class="card-text">
                                         <small class="text-muted">
-                                        投稿日時 {{ $product->created_at->format('Y.m.d') }}
+                                        投稿日時 {{ $product->created_at->format('Y.m.d') }} <br>
                                         </small>
                                     </p>
-
-
+                                    
                                     </div>
                                 </div>
                             </div>

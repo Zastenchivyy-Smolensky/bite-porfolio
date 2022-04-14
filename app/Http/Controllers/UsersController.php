@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\Product;
 class UsersController extends Controller
 {
-
     /**
      * Display the specified resource.
      *

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
@@ -55,32 +56,34 @@ class ProductController extends Controller
         return view("show",["products"=>$product]);
     }
 
-    public function edit($id){
-        $product = Product::find($id);
+    public function edit(Request $request){
+        $user = Auth::user();
+        $product = Product::find($request->id);
         return view('edit',["product"=>$product]);
     }
 
-    public function update(Request $request, Product $product)
+    public function update(Request $request)
     {
         $data = $request->all();
         $image = $request->file("image");
-        $path=$request->image;
         if($request->hasFile("image")){
-            $path=\Storage::put("/public",$image);
-            $path=$image->store("product","public");
+            Storage::delete('/public' . $product->image);
+            $path = $request->file("image")->store("/public");
+            $product->image=basename($path);
+            $product->save();
         }else{
             $path=null;
         }
-        $product->update([
-            "title" => $request->title,
-            "content" => $request->content,
-            "image" => $path,
-            "genre" => $request->genre,
-            "tech" => $request->tech,
-            "github" => $request->github,
-            "link" => $request->link
-        ]);
-        return redirect("/");
+       $product = Product::find($request->id);
+       $product->title = $request->title;
+       $product->content = $request->content;
+       $product->span = $request->span;
+       $product->genre = $request->genre;
+       $product->tech = $request->tech;
+       $product->github = $request->github;
+       $product->link = $request->link;
+       $product->save();
+       return redirect()->route("product.index",$product);
     }
 
     public function delete($id)

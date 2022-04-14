@@ -15,20 +15,20 @@
           <div class="card w-100">
               <div class="card-header">プロダクトを編集してくだいさい</div>
               <div class="card-body">
-                  <form method="post" action="{{route('product.edit',['id'=>$product['id'] ])}}" enctype="multipart/form-data">
+                  <form method="post" action="{{route('update',['id'=>$product['id'] ])}}" enctype="multipart/form-data">
                       @csrf
                       <div class="form-group">
                           アプリのタイトル
                           <input class="form-control" type="text" name="title" value="{{$product['title']}}">
                           アプリの画像
                         <div class="field">
-                        　<input type="file" name="thefile" class="input">
+                          <input type="file" name="thefile" class="input">
                         </div>
                             アプリの説明
                           <textarea name="content" class="form-control" rows="10">
                               {{$product["content"]}}
                           </textarea>
-                        制作期間
+                          制作期間
                           <input class="form-control" type="number" name="span" value="{{$product['span']}}">
                           ジャンル
                           <input class="form-control" type="text" name="genre" value="{{$product['genre']}}">

@@ -21,46 +21,29 @@
             <form action="/create" method="post" enctype="multipart/form-data">
                 <table>
                     @csrf
-                    <div class="field">
-                        <label class="label">アプリのタイトル</label><br>
-                        <input type="text" name="title" class="input">
-                    </div>
-                    <div class="field">
-                        <label class="label">概要</label><br>
-                        <input type="text" name="content" class="input">
-                    </div>
+                    アプリのタイトル
+                          <input class="form-control" type="text" name="title">
+                    アプリの画像
+                        <div class="field">
+                          <input type="file" name="thefile" class="input">
+                        </div>
 
-                    <div class="field">
-                        <label class="label">期間</label><br>
-                        <input type="number" name="span" class="input">
-                    </div>
-
-                    <div class="field">
-                        <label class="label">アプリの画像</label><br>
-                        <input type="file" name="thefile" class="input">
-                    </div>
-
-
-                    <div class="field">
-                        <label class="label">ジャンル</label><br>
-                        <input type="text" name="genre" class="input">
-                    </div>
-                    <div class="field">
-                        <label class="label">技術</label><br>
-                        <input type="text" name="tech" class="input">
-                    </div>
-
-                    <div class="field">
-                        <label class="label">githubのリンク</label><br>
-                        <input type="text" name="github" class="input">
-                    </div>
-
-                    <div class="field">
-                        <label class="label">リンク</label><br>
-                        <input type="text" name="link" class="input">
-                    </div>
+                    アプリの説明
+                        <textarea name="content" class="form-control" rows="10">
+                        </textarea>
+                    
+                        制作期間
+                          <input class="form-control" type="number" name="span" >
+                          ジャンル
+                          <input class="form-control" type="text" name="genre">
+                          技術
+                          <input class="form-control" type="text" name="tech" >
+                          Githubのリンク
+                          <input class="form-control" type="text" name="github">
+                          アプリのリンク
+                          <input class="form-control" type="text" name="link"> 
                 </table>
-                <button class="button is-success">投稿</button>
+                <button class="btn btn-primary btn-lg text-center">投稿</button>
             </form>
             </div>
         </div>
