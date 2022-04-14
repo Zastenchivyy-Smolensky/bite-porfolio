@@ -24,8 +24,10 @@
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary"> <a href="{{ route('product.show', ['id'=>$product->id]) }}" >View</a></button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ route('edit', ['id'=>$product->id]) }}" >Edit</a></button>
-                </div>
+                  @if($user_id == $product->user_id)
+                    <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ route('edit', ['id'=>$product->id]) }}" >Edit</a></button>
+                  @endif
+                  </div>
                 <small class="text-muted">
                     <span class="mr-2">
                         投稿日時 {{ $product->created_at->format('Y.m.d') }}
