@@ -58,32 +58,33 @@ class ProductController extends Controller
 
     public function edit(Request $request){
         $user = Auth::user();
-        $product = Product::find($request->id);
+        $product = Product::findOrFail($request->id);
         return view('edit',["product"=>$product]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request,Product $product)
     {
         $data = $request->all();
         $image = $request->file("image");
         if($request->hasFile("image")){
-            Storage::delete('/public' . $product->image);
+            \Storage::delete('/public' . $product->image);
             $path = $request->file("image")->store("/public");
             $product->image=basename($path);
-            $product->save();
         }else{
             $path=null;
         }
-       $product = Product::find($request->id);
-       $product->title = $request->title;
-       $product->content = $request->content;
-       $product->span = $request->span;
-       $product->genre = $request->genre;
-       $product->tech = $request->tech;
-       $product->github = $request->github;
-       $product->link = $request->link;
-       $product->save();
-       return redirect()->route("product.index",$product);
+        $product = Product::find($request->id);
+        $product->title = $request->title;
+        $product->content = $request->content;
+        $filename= $request->file("thefile")->store("public");
+        $product->image = str_replace("public/",'', $filename);
+        $product->span = $request->span;
+        $product->genre = $request->genre;
+        $product->tech = $request->tech;
+        $product->github = $request->github;
+        $product->link = $request->link;
+        $product->save();
+        return redirect()->route("product.index",$product);
     }
 
     public function delete($id)
