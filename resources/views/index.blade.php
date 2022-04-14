@@ -46,19 +46,21 @@
                                             @csrf
                                         <button type="submit" class="btn btn-sm btn-outline-secondary">削除</button>
                                         @endif
-                                    @auth    
-                                        @if(!$product->isLikedBy(Auth::user()))
-                                            <span class="likes">
-                                                <i class="fas fa-heart like-toggle" data-product-id="{{ $product->id }}"></i>
-                                                <span class="like-counter">{{$product->likes_count}}</span>
-                                            </span>
-                                        @else
-                                            <span class="likes">
-                                                <i class="far fa-heart like-toggle liked" data-product-id="{{ $product->id }}"></i>
-                                                    <span class="like-counter">{{$product->likes_count}}</span>
-                                            </span>
-                                        @endif
-                                    @endauth
+                                        </form>
+
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-3">
+                                                <form action="">
+                                                    <input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <form action="">
+                                                <input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
+                                            </form>
+                                        </div>
+
                                     <p class="card-text">
                                         <small class="text-muted">
                                         投稿日時 {{ $product->created_at->format('Y.m.d') }} <br>
@@ -75,5 +77,6 @@
         </div>
     </section>
 @endsection
+<script src="{{ mix('js/like.js') }}"></script>
 </body>
 </html>
