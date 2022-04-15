@@ -35,6 +35,23 @@
                         {{$products["title"]}}
                     </div>
                 </h5>
+                @if($products->user()->where('user_id', Auth::id())->exists())
+                    <div class="col-md-3">
+                        <form action="({route('product.unlike', $products)})" method="post">
+                            @csrf
+                            <input type="submit" value="&#xf164;いいね" class="fas btn btn-danger">
+                        </form>
+                    </div>
+                @else
+                    <div class="col-md-3">
+                        <form action="{{route('product.like', $products)}}" method="post">
+                            <input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
+                        </form>
+                    </div>
+                @endif
+                <div class="row justify-content-center">
+                    <p>いいね数:{{$products->user()->count()}}</p>
+                </div>
                 <p class="card-text">
                     アプリの説明<br>
                     {{$products["content"]}}

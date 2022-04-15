@@ -17,10 +17,12 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId("user_id")
-            ->constrained()
+            ->references("id")
+            ->on("users")
             ->onDelete("cascade");
             $table->foreignId("product_id")
-            ->constrained()
+            ->regerences("id")
+            ->on("users")
             ->onDelete("cascade");
             $table->unique(['user_id', 'post_id']);
         });

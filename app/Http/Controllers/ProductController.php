@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
-
+use App\Models\Like;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 class ProductController extends Controller
 {
     public function index(){
-        $products = Product::all();
+        $data = [];
+        $products = Product::withCount("likes")->orderBy("created_at","desc")->paginate(10);
+        $like_model = new Like;
         $user_id = Auth::id();
         $user = User::all();
         $products ->load("user");
@@ -19,6 +21,7 @@ class ProductController extends Controller
             "products"=>$products,
             "user_id"=>$user_id,
             "user" => $user,
+            "like_model" => $like_model,
         ];
         return view("index",$params);
     }
@@ -93,20 +96,24 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route("product.index");
     }
-    public function like_product(Request $request)
+    public function like(Request $request)
     {
-         if ( $request->input('like_product') == 0) {
-             //ステータスが0のときはデータベースに情報を保存
-             LikeProduct::create([
-                 'product_id' => $request->input('product_id'),
-                  'user_id' => auth()->user()->id,
-             ]);
-            //ステータスが1のときはデータベースに情報を削除
-         } elseif ( $request->input('like_product')  == 1 ) {
-             LikeProduct::where('product_id', "=", $request->input('product_id'))
-                ->where('user_id', "=", auth()->user()->id)
-                ->delete();
+        $id = Auth::user()->id;
+        $product_id = $request->product_id;
+        $like = new Like;
+        $product = Product::findOrFail($product_id);
+        if($like->like_exist($id, $product_id)){
+            $like = Like::where("product_id", $product_id)->where("user_id",$id)->delete();
+        }else{
+            $like = new Like;
+            $like->product_id = $request->product_id;
+            $like->user_id = Auth::user()->id;
+            $like->save();
         }
-         return  $request->input('like_product');
-    } 
+        $productLikeCount = $product->loadCount("likes")->like_count;
+        $json = [
+            "productLikesCount" =>$productLikesCount,
+        ];
+        return response()->json($json);
+    }
 }

@@ -14,12 +14,12 @@ class User extends Authenticatable
 
     public function products()
     {
-        return $this->hasMany("App\Models\Product","user_id","id");
+        return $this->hasMany(Product::class);
     }
 
     public function likes()
     {
-        return $this->hasMany("App\Like");
+        return $this->hasMany(Like);
     }
 
     /**

@@ -8,7 +8,8 @@
     <title>Document</title>
     <link href="{{ asset('/dist/css/app.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+</script>
 </head>
 <body>
     @extends("layouts.app")
@@ -48,25 +49,12 @@
                                         @endif
                                         </form>
 
-                                        <div class="row justify-content-center">
-                                            <div class="col-md-3">
-                                                <form action="">
-                                                    <input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <form action="">
-                                                <input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
-                                            </form>
-                                        </div>
 
                                     <p class="card-text">
                                         <small class="text-muted">
                                         投稿日時 {{ $product->created_at->format('Y.m.d') }} <br>
                                         </small>
                                     </p>
-                                    
                                     </div>
                                 </div>
                             </div>

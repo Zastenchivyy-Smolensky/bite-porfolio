@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->Integer('user_id')->nullable(false)->chnage();
-            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
         });
     }
