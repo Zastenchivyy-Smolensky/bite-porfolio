@@ -12,6 +12,7 @@ class ProductController extends Controller
 {
     public function index(){
   
+        
         $data = [];
         $products = Product::withCount("likes")->orderBy("created_at","desc")->paginate(10);
         $like_model = new Like;
