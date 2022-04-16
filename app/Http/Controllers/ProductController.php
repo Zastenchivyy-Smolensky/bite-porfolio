@@ -10,15 +10,8 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 class ProductController extends Controller
 {
-    public function index(Request $request){
-        $keyword = $request->input("keyword");
-        $qeury = Product::query();
-        if(!empty($keyword)){
-            $qeury->where("title","like","%{$keyword}")
-            ->orwhere("tech","like", "%{$keyword}");
-        }
-        $serch = $qeury->get();
-        
+    public function index(){
+  
         $data = [];
         $products = Product::withCount("likes")->orderBy("created_at","desc")->paginate(10);
         $like_model = new Like;
@@ -30,14 +23,8 @@ class ProductController extends Controller
             "user_id"=>$user_id,
             "user" => $user,
             "like_model" => $like_model,
-            "serch" => $serch,
-            "keyword" => $keyword
         ];
         return view("index",$params);
-    }
-
-    public function serch(Request $request){
-       
     }
 
     public function add()
