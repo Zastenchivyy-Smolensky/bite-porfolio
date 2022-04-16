@@ -34,9 +34,9 @@ class ProductController extends Controller
     public function create(Request $request){
         $data = $request->all();
         $image = $request->file("image");
-        if($request->hasFile("image")){
-            $path=\Storage::put("/public",$image);
-            $path=explode("/",$path);
+        if($request->file("image") !== null){
+            $uploaded_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+            $product->image   = $uploaded_url;
         }else{
             $path=null;
         }
