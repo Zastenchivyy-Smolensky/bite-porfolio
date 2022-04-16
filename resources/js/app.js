@@ -5,7 +5,6 @@
  */
 
 require("./bootstrap");
-require("./_like.js");
 window.Vue = require("vue").default;
 
 /**
