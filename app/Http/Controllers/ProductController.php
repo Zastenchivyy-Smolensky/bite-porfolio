@@ -10,7 +10,15 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 class ProductController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+        $keyword = $request->input("keyword");
+        $qeury = Product::query();
+        if(!empty($keyword)){
+            $qeury->where("title","like","%{$keyword}")
+            ->orwhere("tech","like", "%{$keyword}");
+        }
+        $serch = $qeury->get();
+        
         $data = [];
         $products = Product::withCount("likes")->orderBy("created_at","desc")->paginate(10);
         $like_model = new Like;
@@ -22,8 +30,14 @@ class ProductController extends Controller
             "user_id"=>$user_id,
             "user" => $user,
             "like_model" => $like_model,
+            "serch" => $serch,
+            "keyword" => $keyword
         ];
         return view("index",$params);
+    }
+
+    public function serch(Request $request){
+       
     }
 
     public function add()
@@ -34,9 +48,9 @@ class ProductController extends Controller
     public function create(Request $request){
         $data = $request->all();
         $image = $request->file("image");
-        if($request->file("image") !== null){
-            $uploaded_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
-            $product->image   = $uploaded_url;
+        if($request->hasFile("image")){
+            $path=\Storage::put("/public",$image);
+            $path=explode("/",$path);
         }else{
             $path=null;
         }
