@@ -16,6 +16,7 @@ use App\Http\Controllers\UsersController;
 
 Auth::routes();
 Route::get("/","App\Http\Controllers\ProductController@index")->name("product.index");
+Route::get("/","App\Http\Controllers\ProductController@index")->name("product.index");
 Route::get("/products/{id}", "App\Http\Controllers\ProductController@show")->name("product.show");
 Route::resource("/users", "App\Http\Controllers\UsersController",["only"=>["show"]]);
 
