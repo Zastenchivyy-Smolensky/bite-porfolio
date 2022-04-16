@@ -27,12 +27,6 @@
 
     <section class="section">
         <div class="container">
-                <div>
-                    <form action="{{route('product.index')}}" method="get">
-                        <input type="text" name="keyword" value="{{ $keyword }}">
-                        <input type="submit" value="検索">
-                    </form>
-                </div>
             <div class="columns is-multiline">
                 @foreach($products as $product)
                     <div class="column is-4">
