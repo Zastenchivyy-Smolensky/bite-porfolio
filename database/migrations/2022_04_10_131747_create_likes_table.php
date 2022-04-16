@@ -24,7 +24,7 @@ return new class extends Migration
             ->regerences("id")
             ->on("users")
             ->onDelete("cascade");
-            $table->unique(['user_id', 'post_id']);
+            $table->unique(['user_id', 'product_id']);
         });
     }
 
