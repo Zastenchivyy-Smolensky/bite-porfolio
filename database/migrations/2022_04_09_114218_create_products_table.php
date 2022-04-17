@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer("span");
             $table->string("image");
             $table->string("genre");
+            $table->Integer('user_id')->nullable(false)->chnage();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string("tech");
             $table->string("github");
             $table->string("link");

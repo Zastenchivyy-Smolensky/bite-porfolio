@@ -29,7 +29,7 @@
                 <h5 class="card-title">
                     <div class="media">
 
-                    投稿者: <a href="{{route('users.show', $products->user_id)}}">{{$products->user->name}}</a> <br>
+
 
                         アプリのタイトル<br>
                         {{$products["title"]}}
