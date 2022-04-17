@@ -38,6 +38,7 @@
                 <div class="row justify-content-center">
                     <p>いいね数:{{$products->user()->count()}}</p>
                 </div>
+                
                 <p class="card-text">
                     アプリの説明<br>
                     {{$products["content"]}}
