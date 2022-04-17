@@ -36,9 +36,7 @@ class ProductController extends Controller
         return view("index",$params);
     }
 
-    public function serch(Request $request){
-       
-    }
+
 
     public function add()
     {
