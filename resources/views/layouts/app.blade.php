@@ -29,7 +29,7 @@
                 </a>
                 @auth
                 <a href="/add"><p class="text-center"><button class="btn btn--primary">
-                    <i class="fa-solid fa-plus"></i>
+                    <i class="fa-solid fa-plus"></i>作成
                 </button></p></a>
                 @endauth
                 
