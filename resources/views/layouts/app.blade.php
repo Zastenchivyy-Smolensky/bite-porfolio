@@ -26,7 +26,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <h1 class="title is-4" style="font-family: cursive;">portfolio-land</h1>
                 </a>
                 @auth
                 <a href="/add"><p class="text-center"><button class="btn btn--primary">
