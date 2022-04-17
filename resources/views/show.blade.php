@@ -35,13 +35,30 @@
                         {{$products["title"]}}
                     </div>
                 </h5>
-                <div class="row justify-content-center">
-                    <p>いいね数:{{$products->user()->count()}}</p>
-                </div>
                 
                 <p class="card-text">
                     アプリの説明<br>
                     {{$products["content"]}}
+                </p>
+                <p class="card-text">
+                    制作期間<br>
+                    {{$products["span"]}}
+                </p>
+                <p class="card-text">
+                    ジャンル<br>
+                    {{$products["genre"]}}
+                </p>
+                <p class="card-text">
+                    技術<br>
+                    {{$products["tech"]}}
+                </p>
+                <p class="card-text">
+                    githubのリンク<br>
+                    {{$products["github"]}}
+                </p>
+                <p class="card-text">
+                    アプリのリンク<br>
+                    {{$products["link"]}}
                 </p>
                 <p class="card-text">
                     <small class="text-muted">
